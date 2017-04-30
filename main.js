@@ -7,18 +7,19 @@ class App extends React.Component {
   render() {
     return (
       <Container>
-          <Header>
+          <Header style={{ backgroundColor: '#d4e157' }}>
               <Left>
-                  <Button transparent>
-                      <Icon name='arrow-back' />
+                  <Button transparent light>
+                      <Text style={{ fontSize: 15 }}>關於</Text>
                   </Button>
               </Left>
               <Body>
-                  <Title>Header</Title>
+                  <Title>Openwork</Title>
               </Body>
               <Right>
-                  <Button transparent>
-                      <Icon name='menu' />
+                  <Button transparent iconLeft light>
+                      <Icon name='person' style={{ fontSize: 15 }}/>
+                      <Text style={{ fontSize: 15 }}>雇主</Text>
                   </Button>
               </Right>
           </Header>
