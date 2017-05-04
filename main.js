@@ -3,7 +3,28 @@ import React, { Component } from 'react';
 import { StyleSheet, ListView, FlatList, Image} from 'react-native';
 import { Container, Header, Left, Button, Body, Right, Icon, Title, Content,
           ListItem, Text, CheckBox, List, Card, CardItem} from 'native-base';
-import { StackNavigator } from 'react-navigation';
+import {
+            createRouter,
+            NavigationProvider,
+            StackNavigation,
+          } from '@expo/ex-navigation';
+// import { AboutScreen } from './about';
+
+const Router = createRouter(() => ({
+            home: () => JobListScreen,
+            about: () => AboutScreen,
+          }));
+
+class App extends React.Component {
+  render() {
+    return (
+      <NavigationProvider router={Router}>
+        <StackNavigation initialRoute={Router.getRoute('home')} />
+      </NavigationProvider>
+    );
+  }
+}
+
 
 class JobListScreen extends React.Component {
   constructor(){
@@ -72,13 +93,14 @@ class JobListScreen extends React.Component {
       icons: icons
     };
   }
+
   render() {
     return (
       <Container>
           <Header style={{ backgroundColor: '#d4e157' }}>
               <Left>
                   <Button transparent light>
-                      <Text style={{ fontSize: 15 }} onPress={() =>this.props.navigation.navigate('About')}>關於</Text>
+                      <Text style={{ fontSize: 15 }} onPress={() => this.props.navigator.push('about')}>關於</Text>
                   </Button>
               </Left>
               <Body>
@@ -119,6 +141,20 @@ class JobListScreen extends React.Component {
   }
 }
 
+class AboutScreen extends React.Component {
+  static route = {
+    navigationBar: {
+      title: 'About',
+    }
+  }
+
+  render() {
+    return (
+      <Text>This is about page.</Text>
+    );
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -128,4 +164,4 @@ const styles = StyleSheet.create({
   },
 });
 
-Expo.registerRootComponent(JobListScreen);
+Expo.registerRootComponent(App);
