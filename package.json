@@ -4,7 +4,7 @@
   "description": "Hello Expo!",
   "author": null,
   "private": true,
-  "main": "jobList.js",
+  "main": "main.js",
   "dependencies": {
     "@expo/ex-navigation": "^2.11.1",
     "expo": "16.0.0",
