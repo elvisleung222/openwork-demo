@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import { StyleSheet, ListView, FlatList, Image} from 'react-native';
 import { Container, Header, Left, Button, Body, Right, Icon, Title, Content,
           ListItem, Text, CheckBox, List, Card, CardItem} from 'native-base';
+import { StackNavigator } from 'react-navigation';
 
-class App extends React.Component {
+class JobListScreen extends React.Component {
   constructor(){
     super();
     const icons = [
@@ -77,7 +78,7 @@ class App extends React.Component {
           <Header style={{ backgroundColor: '#d4e157' }}>
               <Left>
                   <Button transparent light>
-                      <Text style={{ fontSize: 15 }}>關於</Text>
+                      <Text style={{ fontSize: 15 }} onPress={() =>this.props.navigation.navigate('About')}>關於</Text>
                   </Button>
               </Left>
               <Body>
@@ -127,4 +128,4 @@ const styles = StyleSheet.create({
   },
 });
 
-Expo.registerRootComponent(App);
+Expo.registerRootComponent(JobListScreen);
