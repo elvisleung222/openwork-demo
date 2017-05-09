@@ -3,9 +3,11 @@ import React, {Component} from "react";
 import { createRouter, NavigationProvider, StackNavigation } from "@expo/ex-navigation";
 import JobsScreen from "./jobsScreen";
 import AboutScreen from "./aboutScreen";
+import AddJobScreen from "./addJobScreen";
 const Router = createRouter(() => ({
  home: () => JobsScreen,
- about: () => AboutScreen
+ about: () => AboutScreen,
+ addJob: () => AddJobScreen
 }))
 class App extends React.Component {
  render() {

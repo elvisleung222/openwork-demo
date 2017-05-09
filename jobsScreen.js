@@ -20,6 +20,7 @@ class JobsScreen extends React.Component {
   constructor(props){
     super(props);
     this.goToAbout = this.goToAbout.bind(this);
+    this.goToAddJob = this.goToAddJob.bind(this);
     const icons = [
     require('./assets/images/jobImg1.jpg'),
     require('./assets/images/jobImg2.jpg'),
@@ -60,6 +61,9 @@ class JobsScreen extends React.Component {
   goToAbout() {
     this.props.navigator.push('about');
   }
+  goToAddJob() {
+    this.props.navigator.push('addJob');
+  }
   render() {
     return (
       <Container>
@@ -74,8 +78,7 @@ class JobsScreen extends React.Component {
               </Body>
               <Right>
                   <Button transparent iconLeft light>
-                      <Icon name='person' style={{ fontSize: 15 }}/>
-                      <Text style={{ fontSize: 15 }}>雇主</Text>
+                      <Text style={{ fontSize: 15 }} onPress={this.goToAddJob}>+ 搵人開工</Text>
                   </Button>
               </Right>
           </Header>
