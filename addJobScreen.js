@@ -19,7 +19,12 @@ class AddJobScreen extends React.Component {
   this.goBack = this.goBack.bind(this);
   this.state = {
     showToast: false,
-    jobName: ""
+    name: "",
+    location: "",
+    startDate: "",
+    endDate: "",
+    salaryPerDay: ""
+
   }
  }
 goBack() {
@@ -27,15 +32,20 @@ goBack() {
 }
 
 createJob(){
-  // firebase.database().ref('jobs/').push({//stop-here : https://firebase.google.com/docs/reference/js/firebase.database.Reference
-  //
-  //   name: 'Test-name',
-  //   location: 'location',
-  //   startDate: '1/1/2017',
-  //   endDate: '1/2/2017',
-  //   salaryPerDay: '999'
-  // });
-  console.log(this.state.jobName);
+  console.log("Enter createJob");
+  firebase.database().ref('jobs/').push({//stop-here : https://firebase.google.com/docs/reference/js/firebase.database.Reference
+
+    // name: 'Test-name',
+    // location: 'location',
+    // startDate: '1/1/2017',
+    // endDate: '1/2/2017',
+    // salaryPerDay: '999'
+  name: this.state.name,
+  location: this.state.location,
+  startDate: this.state.startDate,
+  endDate: this.state.endDate,
+  salaryPerDay: this.state.salaryPerDay
+  });
 }
 render() {
   return (
@@ -57,33 +67,49 @@ render() {
             <Form>
                 <Item floatingLabel>
                     <Label>工作名稱</Label>
-                    <Input />
+                    <Input
+                        onChangeText={(name) => this.setState({name})}
+                        value={this.state.name}
+                    />
                 </Item>
                 <Item>
                     <Label>開工日期（開始）</Label>
-                    <Input placeholder="DD/MM/YYYY"/>
+                    <Input placeholder="DD/MM/YYYY"
+                            onChangeText={(startDate) => this.setState({startDate})}
+                            value={this.state.startDate}/>
                 </Item>
                 <Item>
                     <Label>開工日期（結束）</Label>
-                    <Input placeholder="DD/MM/YYYY"/>
+                    <Input placeholder="DD/MM/YYYY"
+                            onChangeText={(endDate) => this.setState({endDate})}
+                            value={this.state.endDate}/>
                 </Item>
                 <Item floatingLabel>
                     <Label>地點</Label>
-                    <Input />
+                    <Input onChangeText={(location) => this.setState({location})}
+                           value={this.state.location}/>
                 </Item>
                 <Item>
                     <Label>日  薪 （港幣） ＄</Label>
-                    <Input placeholder="1000"/>
+                    <Input placeholder="1000"
+                    onChangeText={(salaryPerDay) => this.setState({salaryPerDay})}
+                    value={this.state.salaryPerDay}/>
                 </Item>
-                <Button  onPress={()=>{this.createJob;
+                <Button  onPress={()=>{
+                  console.log("Clicked");
+                  this.createJob();
                   Toast.show({
                               supportedOrientations:["portrait","portrait-upside-down","landscape","landscape-left","landscape-right"],
                               text:'成功新增工作！',
                               position: 'bottom',
                               buttonText: '知道'
-                            });}} full success style={{ backgroundColor: '#a0af22' }}>
+                            });}} full success style={{ backgroundColor: '#d4e157' }}
+
+
+                            >
                    <Text>確定</Text>
                 </Button>
+
             </Form>
         </Content>
     </Container>
