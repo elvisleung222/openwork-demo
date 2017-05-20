@@ -1,6 +1,6 @@
 import Expo from 'expo';
 import React, { Component } from 'react';
-import { StyleSheet, ListView, FlatList, Image} from 'react-native';
+import { StyleSheet, ListView, FlatList, Image, TouchableOpacity} from 'react-native';
 import { Container, Header, Left, Button, Body, Right, Icon, Title, Content,
           ListItem, Text, CheckBox, List, Card, CardItem} from 'native-base';
 import * as firebase from 'firebase';
@@ -21,6 +21,7 @@ class JobsScreen extends React.Component {
     super(props);
     this.goToAbout = this.goToAbout.bind(this);
     this.goToAddJob = this.goToAddJob.bind(this);
+    this.goToJobDetail = this.goToJobDetail.bind(this);
     const icons = [
     require('./assets/images/jobImg1.jpg'),
     require('./assets/images/jobImg2.jpg'),
@@ -64,6 +65,9 @@ class JobsScreen extends React.Component {
   goToAddJob() {
     this.props.navigator.push('addJob');
   }
+  goToJobDetail(item) {
+    this.props.navigator.push('jobDetail', {detail: item});
+  }
   render() {
     return (
       <Container>
@@ -86,6 +90,7 @@ class JobsScreen extends React.Component {
               <FlatList
                 data={this.state.jobs}
                 renderItem={({item}) =>
+                <TouchableOpacity onPress={() => this.goToJobDetail(item)} activeOpacity={0.4} focusedOpacity={0.8}>
                 <Card>
                 <CardItem>
                 <Image
@@ -100,7 +105,7 @@ class JobsScreen extends React.Component {
                     </Text>
 
                     <Right><Icon name="arrow-forward" /></Right>
-                </CardItem></Card>
+                </CardItem></Card></TouchableOpacity>
 
               }
               />
